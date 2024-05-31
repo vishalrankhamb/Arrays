@@ -109,17 +109,45 @@ void shiftByOne(int arr[], int n) {
 }
 void shiftByOne1(int arr[], int n) {
   int temp = arr[0];
-  for (int i = 0; i<n-1; i++) {
-    arr[i] = arr[i+1];
+  for (int i = 0; i < n - 1; i++) {
+    arr[i] = arr[i + 1];
   }
-  arr[n-1] = temp;
+  arr[n - 1] = temp;
+  printArray(arr, n);
+}
+
+void shiftByK(int arr[], int n, int k) {
+  int temp[k];
+  for (int i = 0; i < k; i++) {
+    temp[i] = arr[i];
+  }
+  for (int i = 0; i < n; i++) {
+    arr[i] = arr[i + k];
+  }
+  for (int i = 0; i < k; i++) {
+    arr[n - k + i] = temp[i];
+  }
+  printArray(arr, n);
+}
+void shiftByK1(int arr[], int n, int k) {
+  int temp[k];
+  for (int i = 0; i < k; i++) {
+    temp[i] = arr[i + k - 1];
+  }
+  for (int i = 0; i < n; i++) {
+    arr[k + i] = arr[i];
+  }
+  for (int i = 0; i < k; i++) {
+    arr[i] = temp[i];
+  }
   printArray(arr, n);
 }
 
 int main() {
   int arr[] = {10, 20, 30, 40, 50};
   int n = 5;
-    shiftByOne1(arr, n);
+  int k = 3;
+  shiftByK1(arr, n, k);
 
   return 0;
 }
